@@ -1,0 +1,55 @@
+{% extends 'layout.html' %} 
+{% block content%}
+{% load static %}
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <!--<a class="navbar-brand" href="/">โปรแกรมวิเคราะห์โรคอ้วนและโรคที่เกิดจากโรคอ้วน</a>-->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link " aria-current="page" href="/">หน้าแรก</a>
+                  <a class="nav-link" href="/Assessmentform">ทำแบบประเมิน</a>
+                  <a class="nav-link" href="/Search">ค้นหาโรงพยาบาล</a>
+                  <a class="nav-link active" href="/Suggestion">คำแนะนำ</a>
+                </div>
+              </div>
+            </div>
+        </nav>
+          
+            <div class="tab-content" id="v-pills-tabContent ">
+              <div class="tab-pane fade show active" id="v-pills-Search" role="tabpanel" aria-labelledby="v-pills-Search-tab">
+                  <div class="container ">                                                                               
+                        <div class="card card-sm">
+                            <div class="card-body ">
+                              <div class="card-header"style="background-color:#DBE7F9">
+                                <h4 class="card-title"><center>คำแนะนำในการปรับเปลี่ยนพฤติกรรมในการใช้ชีวิตประจำวัน</center></h4>
+                              </div>
+                                
+                                <!--<p class="card-text"><center>คำแนะนำในเว็บไซต์เป็นเพียงแนวทางปฏิบัติเมื่อเป็นโรคนั้นๆ และเป็นแนวทางการป้องกันการเป็นโรคต่างๆ </center></p>-->
+                                <a href="/obesity" class="list-group-item list-group-item-action">คำแนะนำโรคอ้วน</a>
+                                <!--<a href="/Diabetes" class="list-group-item list-group-item-action">คำแนะนำโรคเบาหวาน</a>-->
+                                <a href="/hypertension" class="list-group-item list-group-item-action">คำแนะนำโรคความดัน</a>
+                                <a href="/diseaseofhyperlipidemia" class="list-group-item list-group-item-action">คำแนะนำโรคภาวะไขมันในเลือดสูง</a>
+                                
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">เว็บไซต์นี้จัดทำขึ้นเพื่อทำนายความเสี่ยงการเกิดโรคอ้วน และโรคแทรกซ้อนที่เกิดจากโรคอ้วน</h5>
+                              <p class="card-text">ผู้ใช้งานสามารถทำแบบประเมินเพื่อทำนายการเกิดโรค</p>
+                              <a href="/Assessmentform" class="btn btn-primary">ทำแบบประเมิน</a>
+                            </div>
+                        </div> 
+                  </div>
+              </div>
+              
+            
+        </div>
+    </body>
+</html>
+{% endblock content %}

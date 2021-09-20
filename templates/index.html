@@ -1,0 +1,185 @@
+{% extends 'layout.html' %} 
+{% block content%}
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>โปรแกรมวิเคราะห์โรคอ้วนและโรคที่เกิดจากโรคอ้วน</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <!--<script type="text/javascript" src="{{ STATIC_URL }}javascript-settings.js"></script>-->
+        <!--{% load javascript_settings_tags %}-->
+        <script type="text/javascript">"{% javascript_settings %}"</script>
+        <script language="JavaScript">
+            function calculateBmi() {
+            var weight = document.bmiForm.weight.value
+            var height = document.bmiForm.height.value
+            if(weight > 0 && height > 0){	
+            var finalBmi = weight/(height/100*height/100)
+            document.bmiForm.bmi.value = finalBmi
+            if(finalBmi < 18.5){
+            document.bmiForm.meaning.value = "น้ำหนักน้อยกว่าเกณฑ์"
+            }
+            if(finalBmi  = 18.5   < 22.99 ){
+              document.bmiForm.meaning.value = "น้ำหนักปกติ"
+              }
+            if(finalBmi = 23.0  < 25){
+            document.bmiForm.meaning.value = "น้ำหนักเกินกว่าเกณฑ์"
+            }
+            if(finalBmi = 25.0  < 29.9){
+              document.bmiForm.meaning.value = "อ้วนระดับ 1"
+              }
+            if(finalBmi > 30){
+            document.bmiForm.meaning.value = "อ้วนระดับ 2"
+            }
+            }
+            else{
+            alert("กรุณากรอกข้อมูล")
+            }
+            }
+            //-->
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <!--<a class="navbar-brand" href="/">โปรแกรมวิเคราะห์โรคอ้วนและโรคที่เกิดจากโรคอ้วน</a>-->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link active" aria-current="page" href="/">หน้าแรก</a>
+                  <a class="nav-link" href="/Assessmentform">ทำแบบประเมิน</a>
+                  <a class="nav-link" href="/Search">ค้นหาโรงพยาบาล</a>
+                  <a class="nav-link" href="/Suggestion">คำแนะนำ</a>
+                </div>
+              </div>
+            </div>
+        </nav>
+        <div class="card navbar-light bg-light">
+            <div class="card-body">  
+                <div class="card-header"style="background-color:#DBE7F9">
+                    <center>
+                    <h4 >โปรแกรมวิเคราะห์โรคอ้วนและโรคแทรกซ้อนที่เกิดจากโรคอ้วน</h4>
+                </center> 
+                </div>                     
+                    <center>
+                         <br>เว็บไซต์นี้จัดทำขึ้นเพื่อทำนายความเสี่ยงการเกิดโรคอ้วน และโรคแทรกซ้อนที่เกิดจากโรคอ้วน ประกอบด้วย โรคอ้วน โรคเบาหวาน โรคความดัน และโรคภาวะไขมันในเลือดสูง </font>    
+                    </center>     
+                         โดยทำนายจากพฤติกรรมการบริโภค พฤติกรรมการใช้ชีวิตประจำวัน และปัญหาสุขภาพ                                   
+            </div>  
+            <center>
+               <!--<img src="{% static "obesity.jpg" %}" alt="My image">   -->  
+                          
+            </center>
+        </div>
+        <div class="card navbar-light bg-light">
+            <div class="row">
+                <div class="card-body "> 
+                    <div class="row">
+                        <div class="card-body ">
+                            <div class="card-header border-0">
+                                <div class="row align-items-center maliregular">
+                                        <div class="col-07 col-sm-3">   
+                                            <div class="contrainer">                                                    
+                                                <h3 class="mb-0 malilight">คำนวนดัชนีมวลกาย</h3>   
+                                                    <form name="bmiForm">
+                                                        น้ำหนัก (กิโลกรัม): <input type="text" class="form-control"name="weight" size="5"><br />
+                                                        ส่วนสูง (เซนติเมตร): <input type="text" class="form-control" name="height" size="5"><br />
+                                                        <input type="button" class="btn btn-primary mb-3 topnav1" value="คำนวณ" onClick="calculateBmi()"><br />
+                                                        BMI: <input type="text" class="topnav form-control" name="bmi" size="5"><br />
+                                                        <!---ผลลัพธ์: <input type="text" name="meaning" size="25"><br />--> 
+                                                        <input type="reset" class="btn btn-primary mb-2 topnav1"value="รีเซ็ต" />
+                                                    </form>   
+                                            </div>
+                                        </div>
+                                    <div class="col-xl-8">
+                                        <div class="card shadow">
+                                        <div class="card-header border-0">
+                                            <div class="row align-items-center maliregular">
+                                            <div class="contrainer"> 
+                                                <center> <h3>เกณฑ์วัดดัชนีมวลกาย</h3> </center>                                                     
+                                            </div>                
+                                            </div>
+                                        </div>
+                                        <center>
+                                            <div class="table-responsive ">
+                                                <!-- Projects table -->
+                                                <table class="table align-items-center table-flush ">
+                                                <thead class="table-secondary">
+                                                    <tr>
+                                                    <th scope="col"  class="malilight" ><center> กลุ่ม </center></th>
+                                                    <th scope="col"  class="malilight" ><center> เกณฑ์สำหรับประชากรเอเชีย </center></th>
+                                                    <th scope="col"  class="malilight" ></th>                
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>
+                                                    <th scope="row" class="malimedium" >
+                                                       <center> น้ำหนักน้อย </center> 
+                                                    </th>
+                                                    <td>
+                                                        <center>  < 18.5 </center>
+                                                    </td>
+                                                    <td>                    
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th scope="row"  class="malimedium" >
+                                                        <center>   น้ำหนักปกติ </center>
+                                                    </th>
+                                                    <td>
+                                                        <center>  18.5 - 22.99 </center>
+                                                    </td>
+                                                    <td>                      
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th scope="row"  class="malimedium" >
+                                                        <center> น้ำหนักเกิน  </center>  
+                                                    </th>
+                                                    <td>
+                                                        <center> 26 - 24.99 </center>
+                                                    </td>
+                                                    <td>                      
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th scope="row"  class="malimedium" >
+                                                        <center> อ้วนระดับ 1  </center>
+                                                    </th>
+                                                    <td>
+                                                        <center>  25 - 29.99 </center>
+                                                    </td>
+                                                    <td>                      
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th scope="row"  class="malimedium" >
+                                                        <center>  อ้วนระดับ 2 </center>
+                                                    </th>
+                                                    <td>
+                                                        <center>   >= 30 </center>
+                                                    </td>
+                                                    <td>                      
+                                                    </td>
+                                                    </tr>
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                        </center>
+                                        </div>          
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+{% endblock content %}

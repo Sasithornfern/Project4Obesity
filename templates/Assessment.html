@@ -1,0 +1,1449 @@
+{% extends 'layout.html' %} 
+{% block content%}
+{% load static %}
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>โปรแกรมวิเคราะห์โรคอ้วนและโรคที่เกิดจากโรคอ้วน</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <script type="text/Javascript">
+          function check()
+          {
+            colordisplay = document.querySelector('input[name=flexRadioDefault]:checked').value;
+            document.querySelector("#selecttype").textContent='ค่าที่เลือก '+ colordisplay;
+          }
+          function check1()
+          {
+            colordisplay = document.querySelector('input[name=gender]:checked').value;
+            document.querySelector("#selectchoice").textContent='ค่าที่เลือก '+ colordisplay;
+          }
+         
+          function alertkey()
+          {
+            if(document.getElementByName('gender').checked  == false 
+            && document.getElementByName('age').checked  == false
+            && document.getElementByName('status').checked  == false 
+            && document.getElementByName('weights').checked  == false 
+            && document.getElementByName('heights').checked  == false 
+            && document.getElementByName('DHD').checked  == false 
+            && document.getElementByName('DPHD').checked  == false 
+            && document.getElementByName('onemeal').checked  == false 
+            && document.getElementByName('twomeals').checked  == false 
+            && document.getElementByName('threemeals').checked  == false 
+            && document.getElementByName('fourorfivemeal').checked  == false 
+            && document.getElementByName('Eat_spicy').checked  == false 
+            && document.getElementByName('Eat_salty').checked  == false 
+            && document.getElementByName('Eat_sweet').checked  == false 
+            && document.getElementByName('Eat_tasteless').checked  == false 
+            && document.getElementByName('Eat_rice').checked  == false 
+            && document.getElementByName('Eat_stickyrice').checked  == false 
+            && document.getElementByName('Eat_noodles').checked  == false 
+            && document.getElementByName('Eat_ricenoodles').checked  == false 
+            && document.getElementByName('Eat_bread').checked  == false 
+            && document.getElementByName('Eat_sugar').checked  == false 
+            && document.getElementByName('ERM').checked  == false 
+            && document.getElementByName('EPM').checked  == false 
+            && document.getElementByName('EWM').checked  == false 
+            && document.getElementByName('EFM').checked  == false 
+            && document.getElementByName('ESM').checked  == false 
+            && document.getElementByName('EAM').checked  == false 
+            && document.getElementByName('EVI').checked  == false 
+            && document.getElementByName('Eat_egg').checked  == false 
+            && document.getElementByName('Eat_nuts').checked  == false 
+            && document.getElementByName('Eat_tofu').checked  == false 
+            && document.getElementByName('Lord').checked  == false 
+            && document.getElementByName('Coconut_oil').checked  == false 
+            && document.getElementByName('Palm_oil').checked  == false 
+            && document.getElementByName('Mixed_oil').checked  == false 
+            && document.getElementByName('Butterormargarine').checked  == false 
+            && document.getElementByName('Cookwithsteaming').checked  == false 
+            && document.getElementByName('Cookbyboiling').checked  == false 
+            && document.getElementByName('Cookwithstirfry').checked  == false 
+            && document.getElementByName('Cookwithfries').checked  == false 
+            && document.getElementByName('Cookwithstew').checked  == false 
+            && document.getElementByName('Cookwithgrill').checked  == false 
+            && document.getElementByName('Cookwithbaking').checked  == false 
+            && document.getElementByName('Tastelessmilk').checked  == false 
+            && document.getElementByName('Sweetmilk').checked  == false 
+            && document.getElementByName('Powdermilk').checked  == false 
+            && document.getElementByName('Sweetenedcondensedmilk').checked  == false 
+            && document.getElementByName('Sourmilk').checked  == false 
+            && document.getElementByName('Yogurt').checked  == false 
+            && document.getElementByName('Soymilk').checked  == false 
+            && document.getElementByName('Morningglory').checked  == false 
+            && document.getElementByName('Kale').checked  == false 
+            && document.getElementByName('Pumpkin').checked  == false 
+            && document.getElementByName('Cucumber').checked  == false 
+            && document.getElementByName('Greenbeans_longbeans').checked  == false 
+            && document.getElementByName('Papaya').checked  == false 
+            && document.getElementByName('Banana').checked  == false 
+            && document.getElementByName('Orange').checked  == false 
+            && document.getElementByName('Pineapple').checked  == false 
+            && document.getElementByName('Mango').checked  == false 
+            && document.getElementByName('Crisp').checked  == false 
+            && document.getElementByName('Thaidessert').checked  == false 
+            && document.getElementByName('Cookie').checked  == false 
+            && document.getElementByName('Candy').checked  == false 
+            && document.getElementByName('Icecream').checked  == false 
+            && document.getElementByName('Sparkingwater').checked  == false 
+            && document.getElementByName('Sweetwater').checked  == false 
+            && document.getElementByName('Tea').checked  == false 
+            && document.getElementByName('Coffee').checked  == false 
+            && document.getElementByName('Liquor_beer_wine').checked  == false 
+            && document.getElementByName('Energy_drink').checked  == false 
+            && document.getElementByName('MTS').checked  == false 
+            && document.getElementByName('Antidepressants').checked  == false 
+            && document.getElementByName('Antiepilepticdrug').checked  == false
+            && document.getElementByName('Diabetesmedication').checked  == false
+            && document.getElementByName('Birthcontrolpills').checked  == false
+            && document.getElementByName('Diffrentdrugforendometriosis').checked  == false
+            && document.getElementByName('Antiinflammatorydrug').checked  == false
+            && document.getElementByName('Antiviraldrug').checked  == false
+            && document.getElementByName('Varioussupplements').checked  == false
+            && document.getElementByName('Smoke').checked  == false
+            && document.getElementByName('Run').checked  == false
+            && document.getElementByName('Cycling').checked  == false
+            && document.getElementByName('Swim').checked  == false
+            && document.getElementByName('Basketball').checked  == false
+            && document.getElementByName('Football').checked  == false
+            && document.getElementByName('Yoga').checked  == false
+            && document.getElementByName('Aerobic').checked  == false
+            && document.getElementByName('Weightlifting').checked  == false
+            && document.getElementByName('NGS').checked  == false
+            && document.getElementByName('SHS').checked  == false
+            && document.getElementByName('SDD').checked  == false
+            && document.getElementByName('WEBFS').checked  == false
+            && document.getElementByName('Difficultybreathing').checked  == false
+            && document.getElementByName('WBLFTC').checked  == false
+            && document.getElementByName('SWH').checked  == false
+            && document.getElementByName('Itchyskin').checked  == false
+            && document.getElementByName('TSY').checked  == false
+            && document.getElementByName('Yellowskin').checked  == false
+            && document.getElementByName('YSP').checked  == false
+            && document.getElementByName('CRS').checked  == false
+            && document.getElementByName('AirAllergic').checked  == false
+            && document.getElementByName('Blurredvision').checked  == false
+            && document.getElementByName('Badbreath').checked  == false
+            && document.getElementByName('HFN').checked  == false
+            && document.getElementByName('Urinaryincontinence').checked  == false
+            && document.getElementByName('Foamyurine').checked  == false
+            && document.getElementByName('WLC').checked  == false
+            && document.getElementByName('Havestress').checked  == false
+            && document.getElementByName('Dizziness').checked  == false
+            && document.getElementByName('SHQ').checked  == false
+            && document.getElementByName('NHF').checked  == false
+            && document.getElementByName('SHF').checked  == false
+            && document.getElementByName('Coldhandandfeet').checked  == false
+            && document.getElementByName('Nauseaandvomiting').checked  == false
+            && document.getElementByName('Stomachcolic').checked  == false
+            && document.getElementByName('AMS').checked  == false
+            && document.getElementByName('Agony').checked  == false
+            && document.getElementByName('PIH').checked  == false
+            && document.getElementByName('DAT').checked  == false
+            && document.getElementByName('Cannotliedown').checked  == false
+              )
+            {
+                alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+                return false;
+            }
+            document.form1.submit();
+          }
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <!--<a class="navbar-brand" href="/">โปรแกรมวิเคราะห์โรคอ้วนและโรคที่เกิดจากโรคอ้วน</a>-->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link" aria-current="page" href="/">หน้าแรก</a>
+                  <a class="nav-link  active" href="/Assessmentform">ทำแบบประเมิน</a>
+                  <a class="nav-link" href="/Search">ค้นหาโรงพยาบาล</a>
+                  <a class="nav-link" href="/Suggestion">คำแนะนำ</a>
+                </div>
+              </div>
+            </div>
+        </nav>
+       <!--- <form action="addform" method="POST">
+          {% for typename1 in Question %}
+          <input type="radio" value="{{typename1.score}}" name="typename" >{{typename1.typename}}
+          {% endfor %}
+          <button type="button" class="btn btn-outline-primary" onclick="check()">ยืนยัน</button>
+          <b style="color:brown" id="selecttype"></b>
+        </form> 
+        <div class="form-check">
+          <form action="addform" method="POST">
+            <div class="form-check">
+              รับประทานอาหาร 1 มื้อ
+            </div>
+            {% for typename2 in EatQuestion %}
+            
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked value="{{typename2.score1}}" name="typename" >{{typename2.typename1}}<br>
+            <label class="form-check-label" for="flexRadioDefault2">
+            {% endfor %}
+            </label>
+            <button type="button" class="btn btn-outline-primary" onclick="check()">ยืนยัน</button>
+            <b style="color:brown" id="selecttype"></b>
+          </form>  
+        </div>-->
+        <div class="tab-content" id="v-pills-tabContent ">
+          <div class="tab-pane fade show active" id="v-pills-Search" role="tabpanel" aria-labelledby="v-pills-Search-tab">
+              <div class="container ">  
+                <div class="card card-sm">
+                  <div class="card-body ">                    
+                          <div class="card">
+                            <div class="card-header"style="background-color:#DBE7F9">
+                              <h4 class="text-center"> แบบประเมินที่ใช้ในการวิเคราะห์ </h4>
+                            </div>
+                            <div class="card-body">
+                              <blockquote class="blockquote mb-0">
+                                <!--<p>A well-known quote, contained in a blockquote element.</p>
+                                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>-->
+                                <h4><B>คำชี้แจง : </B> การทำแบบประเมินแบ่งออกเป็น 4 ตอน ได้แก่</h4><br>
+                                <h5>ตอนที่ 1 ข้อมูลทั่วไป</h5><br>
+                                <h5>ตอนที่ 2 พฤติกรรมการบริโภค</h5><br>
+                                <h5>ตอนที่ 3 พฤติกรรมในการชีวิตประจำวัน</h5><br>
+                                <h5>ตอนที่ 4 อาการ / ปัญหาสุขภาพ</h5>
+                              </blockquote>
+                            </div>
+                            <form action="/TestTree/" method="POST" name="form1" onSubmit="JavaScript:return alertkey();" > 
+                              {% csrf_token %}
+                                <div class="card-header" style="background-color:#DBE7F9">
+                                  <font size="4"><b>ตอนที่ 1 : ข้อมูลทั่วไป </b></font> 
+                                </div>
+                              <blockquote class="blockquote mb-0">
+                                <div class="card-body">
+                                  <div class="form-group">  
+                                   <br>   เพศ :  <input type="radio" name="gender" value="0" id="gender" /> ชาย <input type="radio" name="gender" value="1" required /> หญิง <br><br>
+                                  </div>
+                                    <div class="form-group">
+                                      อายุ : <input type="number" name="age" id="age" required /> ปี <br><br>
+                                    </div>
+                                      <div class="form-group">
+                                        สภานภาพ : <input type="radio" name="status" value="0" id="status"/> นักเรียน / นักศึกษา <input type="radio" name="status" value="1" required/> อาจารย์ / บุคลากร <input type="radio" name="status" value="2"/> อื่นๆ <br><br>
+                                      </div>
+                                        <div class="form-group">
+                                          น้ำหนัก : <input type="number" name="weights" id="weights" required/> กิโลกรัม <br><br>
+                                        </div>
+                                          <div class="form-group">
+                                            ส่วนสูง : <input type="number" name="heights" id="heights" required/> เซนติเมตร <br><br>
+                                          </div>
+                                            <div class="form-group">
+                                              ท่านมีโรคประจำตัวหรือไม่ : <input type="radio" name="DHD" id="DHD" value="1" required/> มี <input type="radio" name="DHD" value="0" required/> ไม่มี <br><br>
+                                            </div>
+                                            <div class="form-group">
+                                              พ่อแม่หรือพี่น้องมีโรคประจำตัวหรือไม่ : <input type="radio" name="DPHD" id="DPHD" value="1" required/> มี <input type="radio" name="DPHD" value="0" required/> ไม่มี <br><br>
+                                            </div>
+                                </div>
+                              </blockquote>
+                              <div class="card-header" style="background-color:#DBE7F9">
+                                <font size="4"><b>ตอนที่ 2 : พฤติกรรมการบริโภค </b></font> <br>
+                                <font size="4"><b>คำชี้แจง</b> : โปรดเลือกคำตอบในตารางที่ตรงกับพฤติกรรมสุขภาพของท่านมากที่สุดเพียงข้อเดียวและโปรดตอบทุกคำถาม</font>
+                              </div>
+                              <blockquote class="blockquote mb-0">
+                                <div class="card-body">
+                                  <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover">
+                                      <thead>
+                                          <tr>
+                                            <td align="center" rowspan="2"><b>ลำดับ</b></td>
+                                            <td align="center" rowspan="2"><b>รายการ</b></td>
+                                            <td align="center" colspan=5><b>ความถี่ในการรับประทาน</b></td>
+                                          </tr>
+                                          <tr>
+                                            {% for typename2 in EatQuestion %}
+                                            <td align="center" scope="col=1"><b>{{typename2.typename1}}</b></td>
+                                            {% endfor %}
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 1 จำนวนมื้ออาหารที่บริโภคในแต่ละวัน</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row" >1</th>                          
+                                          <td>รับประทานอาหาร 1 มื้อ</td>
+                                          <td><input type="radio" name="onemeal" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="onemeal" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="onemeal" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="onemeal" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="onemeal" id="never"                     value="0" required></td>                          
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>รับประทานอาหาร 2 มื้อ </td>
+                                          <td><input type="radio" name="twomeals" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="twomeals" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="twomeals" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="twomeals" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="twomeals" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>รับประทานอาหาร 3 มื้อ</td>
+                                          <td><input type="radio" name="threemeals" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="threemeals" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="threemeals" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="threemeals" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="threemeals" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>รับประทานอาหาร 4-5 มื้อ</td>
+                                          <td><input type="radio" name="fourorfivemeal" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="fourorfivemeal" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="fourorfivemeal" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="fourorfivemeal" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="fourorfivemeal" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>           
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 2 รสชาติอาหารที่รับประทาน</b></td>
+                                        </tr>
+                                        <tr >
+                                          <th scope="row">1</th>                          
+                                          <td>รับประทานอาหารรสเผ็ด</td>
+                                          <td><input type="radio" name="Eat_spicy" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Eat_spicy" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Eat_spicy" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Eat_spicy" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Eat_spicy" id="never"                     value="0" required></td>                          
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>รับประทานอาหารรสเค็ม </td>
+                                          <td><input type="radio" name="Eat_salty" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Eat_salty" id="fiveorsixdaysweek"         value="3"required></td>
+                                          <td><input type="radio" name="Eat_salty" id="threeorfourdaysweek"       value="2"required></td>
+                                          <td><input type="radio" name="Eat_salty" id="oneortwodaysweek"          value="1"required></td>
+                                          <td><input type="radio" name="Eat_salty" id="never"                     value="0"required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>รับประทานอาหารรสหวาน</td>
+                                          <td><input type="radio" name="Eat_sweet" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Eat_sweet" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Eat_sweet" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Eat_sweet" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Eat_sweet" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>รับประทานอาหารรสจืด</td>
+                                          <td><input type="radio" name="Eat_tasteless" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Eat_tasteless" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Eat_tasteless" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Eat_tasteless" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Eat_tasteless" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 3 การบริโภคคาร์โบไฮเดรต</b></td>
+                                        </tr>
+                                        <tr >
+                                          <th scope="row">1</th>                          
+                                          <td>รับประทานข้าวเจ้า</td>
+                                          <td><input type="radio" name="Eat_rice" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Eat_rice" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Eat_rice" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Eat_rice" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Eat_rice" id="never"                     value="0" required></td>                          
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>รับประทานข้าวเหนียว</td>
+                                          <td><input type="radio" name="Eat_stickyrice" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Eat_stickyrice" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Eat_stickyrice" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Eat_stickyrice" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Eat_stickyrice" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>รับประทานก๋วยเตี๋ยว</td>
+                                          <td><input type="radio" name="Eat_noodles" id="sevendaysweek"            value="4" required></td>
+                                          <td><input type="radio" name="Eat_noodles" id="fiveorsixdaysweek"        value="3" required></td>
+                                          <td><input type="radio" name="Eat_noodles" id="threeorfourdaysweek"      value="2" required></td>
+                                          <td><input type="radio" name="Eat_noodles" id="oneortwodaysweek"         value="1" required></td>
+                                          <td><input type="radio" name="Eat_noodles" id="never"                    value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>รับประทานขนมจีน</td>
+                                          <td><input type="radio" name="Eat_ricenoodles" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Eat_ricenoodles" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Eat_ricenoodles" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Eat_ricenoodles" id="oneortwodaysweek"      value="1" required ></td>
+                                          <td><input type="radio" name="Eat_ricenoodles" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">5</th>
+                                          <td>รับประทานขนมปัง</td>
+                                          <td><input type="radio" name="Eat_bread" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Eat_bread" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Eat_bread" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Eat_bread" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Eat_bread" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <!--<tr>
+                                          <th scope="row">6</th>
+                                          <td>รับประทานน้ำตาลทราย</td>
+                                          <td><input type="radio" name="Eat_sugar" id="sevendaysweek"            value="4" required></td>
+                                          <td><input type="radio" name="Eat_sugar" id="fiveorsixdaysweek"        value="3" required></td>
+                                          <td><input type="radio" name="Eat_sugar" id="threeorfourdaysweek"      value="2" required></td>
+                                          <td><input type="radio" name="Eat_sugar" id="oneortwodaysweek"         value="1" required ></td>
+                                          <td><input type="radio" name="Eat_sugar" id="never"                    value="0" required></td>
+                                        </tr>-->
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 4 การบริโภคโปรตีนจากสัตว์</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>รับประทานเนื้อสัตว์ ประเภทเนื้อแดง (หมู วัว ควาย แกะ)</td>
+                                          <td><input type="radio" name="ERM" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="ERM" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="ERM" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="ERM" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="ERM" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>รับประทานเนื้อสัตว์ ประเภทสัตว์ปีก (ไก่ เป็ด ห่าน นก)</td>
+                                          <td><input type="radio" name="EPM" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="EPM" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="EPM" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="EPM" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="EPM" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>รับประทานเนื้อสัตว์ ประเภทสัตว์ป่า (กวาง เก้ง หมูป่า)</td>
+                                          <td><input type="radio" name="EWM" id="sevendaysweek"            value="4" required></td>
+                                          <td><input type="radio" name="EWM" id="fiveorsixdaysweek"        value="3" required></td>
+                                          <td><input type="radio" name="EWM" id="threeorfourdaysweek"      value="2" required></td>
+                                          <td><input type="radio" name="EWM" id="oneortwodaysweek"         value="1" required></td>
+                                          <td><input type="radio" name="EWM" id="never"                    value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>รับประทานเนื้อสัตว์ ประเภทน้ำจืด (กุ้งแม่น้ำ ปลานิล ปลาดุก ปลาคัง)</td>
+                                          <td><input type="radio" name="EFM" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="EFM" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="EFM" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="EFM" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="EFM" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">5</th>
+                                          <td>รับประทานเนื้อสัตว์ ประเภทน้ำเค็ม (กุ้ง หอย ปู ปลา หมึก)</td>
+                                          <td><input type="radio" name="ESM" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="ESM" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="ESM" id="threeorfourdaysweek"       value="2"required></td>
+                                          <td><input type="radio" name="ESM" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="ESM" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">6</th>
+                                          <td>รับประทานเนื้อสัตว์ ประเภทครึ่งบกครึ่งน้ำ (กบ เขียด)</td>
+                                          <td><input type="radio" name="EAM" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="EAM" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="EAM" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="EAM" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="EAM" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">7</th>
+                                          <td>รับประทานแมลงต่างๆ</td>
+                                          <td><input type="radio" name="EVI" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="EVI" id="fiveorsixdaysweek"         value="3"required></td>
+                                          <td><input type="radio" name="EVI" id="threeorfourdaysweek"       value="2"required></td>
+                                          <td><input type="radio" name="EVI" id="oneortwodaysweek"          value="1"required></td>
+                                          <td><input type="radio" name="EVI" id="never"                     value="0"required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">8</th>
+                                          <td>รับประทานไข่ (ไก่ เป็ด นกกระทา)</td>
+                                          <td><input type="radio" name="Eat_egg" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Eat_egg" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Eat_egg" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Eat_egg" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Eat_egg" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <!--<tr>
+                                          <td colspan="7"><b>ส่วนที่ 5 การบริโภคโปรตีนจากพืช</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>รับประทานถั่ว</td>
+                                          <td><input type="radio" name="Eat_nuts" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Eat_nuts" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Eat_nuts" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Eat_nuts" id="oneortwodaysweek"          value="1" required> </td>
+                                          <td><input type="radio" name="Eat_nuts" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>รับประทานเต้าหู้</td>
+                                          <td><input type="radio" name="Eat_tofu" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Eat_tofu" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Eat_tofu" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Eat_tofu" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Eat_tofu" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 6 น้ำมันที่ใช้ปรุงอาหาร</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>น้ำมันหมู</td>
+                                          <td><input type="radio" name="Lord" id="sevendaysweek"              value="4" required></td>
+                                          <td><input type="radio" name="Lord" id="fiveorsixdaysweek"          value="3" required></td>
+                                          <td><input type="radio" name="Lord" id="threeorfourdaysweek"        value="2" required></td>
+                                          <td><input type="radio" name="Lord" id="oneortwodaysweek"           value="1" required></td>
+                                          <td><input type="radio" name="Lord" id="never"                      value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>น้ำมันมะพร้าว</td>
+                                          <td><input type="radio" name="Coconut_oil" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Coconut_oil" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Coconut_oil" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Coconut_oil" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Coconut_oil" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>น้ำมันปาล์ม</td>
+                                          <td><input type="radio" name="Palm_oil" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Palm_oil" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Palm_oil" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Palm_oil" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Palm_oil" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>น้ำมันพืชผสม</td>
+                                          <td><input type="radio" name="Mixed_oil" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Mixed_oil" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Mixed_oil" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Mixed_oil" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Mixed_oil" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">5</th>
+                                          <td>เนยหรือมาการีน</td>
+                                          <td><input type="radio" name="Butterormargarine" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Butterormargarine" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Butterormargarine" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Butterormargarine" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Butterormargarine" id="never"                     value="0" required></td>
+                                        </tr>-->
+                                       <!--<tr>
+                                          <td colspan="7"><b>ส่วนที่ 7 วิธีการปรุงอาหารที่บริโภค</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>ปรุงอาหารด้วยการนึ่ง</td>
+                                          <td><input type="radio" name="Cookwithsteaming" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Cookwithsteaming" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Cookwithsteaming" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Cookwithsteaming" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Cookwithsteaming" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>ปรุงอาหารด้วยการต้ม</td>
+                                          <td><input type="radio" name="Cookbyboiling" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Cookbyboiling" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Cookbyboiling" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Cookbyboiling" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Cookbyboiling" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>ปรุงอาหารด้วยการผัด</td>
+                                          <td><input type="radio" name="Cookwithstirfry" id="sevendaysweek"           value="4" required></td>
+                                          <td><input type="radio" name="Cookwithstirfry" id="fiveorsixdaysweek"       value="3" required></td>
+                                          <td><input type="radio" name="Cookwithstirfry" id="threeorfourdaysweek"     value="2" required></td>
+                                          <td><input type="radio" name="Cookwithstirfry" id="oneortwodaysweek"        value="1" required></td>
+                                          <td><input type="radio" name="Cookwithstirfry" id="never"                   value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>ปรุงอาหารด้วยการทอด</td>
+                                          <td><input type="radio" name="Cookwithfries" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Cookwithfries" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Cookwithfries" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Cookwithfries" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Cookwithfries" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">5</th>
+                                          <td>ปรุงอาหารด้วยการตุ๋น</td>
+                                          <td><input type="radio" name="Cookwithstew" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Cookwithstew" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Cookwithstew" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Cookwithstew" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Cookwithstew" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">6</th>
+                                          <td>ปรุงอาหารด้วยการปิ้งย่าง</td>
+                                          <td><input type="radio" name="Cookwithgrill" id="sevendaysweek"           value="4" required></td>
+                                          <td><input type="radio" name="Cookwithgrill" id="fiveorsixdaysweek"       value="3" required></td>
+                                          <td><input type="radio" name="Cookwithgrill" id="threeorfourdaysweek"     value="2" required></td>
+                                          <td><input type="radio" name="Cookwithgrill" id="oneortwodaysweek"        value="1" required></td>
+                                          <td><input type="radio" name="Cookwithgrill" id="never"                   value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">7</th>
+                                          <td>ปรุงอาหารด้วยการอบ</td>
+                                          <td><input type="radio" name="Cookwithbaking" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Cookwithbaking" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Cookwithbaking" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Cookwithbaking" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Cookwithbaking" id="never"                     value="0" required></td>
+                                        </tr>-->
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 5 นมและผลิตภัณฑ์ที่ผลิตจากนม</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>นมสดจืด</td>
+                                          <td><input type="radio" name="Tastelessmilk" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Tastelessmilk" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Tastelessmilk" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Tastelessmilk" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Tastelessmilk" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <!--<tr>
+                                          <th scope="row">2</th>
+                                          <td>นมสดหวาน</td>
+                                          <td><input type="radio" name="Sweetmilk" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Sweetmilk" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Sweetmilk" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Sweetmilk" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Sweetmilk" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>นมผง</td>
+                                          <td><input type="radio" name="Powdermilk" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Powdermilk" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Powdermilk" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Powdermilk" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Powdermilk" id="never"                     value="0" required></td>
+                                        </tr>-->
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>นมข้นหวาน</td>
+                                          <td><input type="radio" name="Sweetenedcondensedmilk" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Sweetenedcondensedmilk" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Sweetenedcondensedmilk" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Sweetenedcondensedmilk" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Sweetenedcondensedmilk" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>นมเปรี้ยว</td>
+                                          <td><input type="radio" name="Sourmilk" id="sevendaysweek"              value="4" required></td>
+                                          <td><input type="radio" name="Sourmilk" id="fiveorsixdaysweek"          value="3" required></td>
+                                          <td><input type="radio" name="Sourmilk" id="threeorfourdaysweek"        value="2" required></td>
+                                          <td><input type="radio" name="Sourmilk" id="oneortwodaysweek"           value="1" required></td>
+                                          <td><input type="radio" name="Sourmilk" id="never"                      value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>โยเกิร์ต</td>
+                                          <td><input type="radio" name="Yogurt" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Yogurt" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Yogurt" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Yogurt" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Yogurt" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">5</th>
+                                          <td>นมถั่วเหลือง</td>
+                                          <td><input type="radio" name="Soymilk" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Soymilk" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Soymilk" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Soymilk" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Soymilk" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 6 ผัก</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>ผักบุ้ง</td>
+                                          <td><input type="radio" name="Morningglory" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Morningglory" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Morningglory" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Morningglory" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Morningglory" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>ผักคะน้า</td>
+                                          <td><input type="radio" name="Kale" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Kale" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Kale" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Kale" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Kale" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>ฟักทอง</td>
+                                          <td><input type="radio" name="Pumpkin" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Pumpkin" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Pumpkin" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Pumpkin" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Pumpkin" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>แตงกวา</td>
+                                          <td><input type="radio" name="Cucumber" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Cucumber" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Cucumber" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Cucumber" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Cucumber" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">5</th>
+                                          <td>ถั่วแขก,ถั่วฝักยาว</td>
+                                          <td><input type="radio" name="Greenbeans_longbeans" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Greenbeans_longbeans" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Greenbeans_longbeans" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Greenbeans_longbeans" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Greenbeans_longbeans" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 7 ผลไม้</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>มะละกอ</td>
+                                          <td><input type="radio" name="Papaya" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Papaya" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Papaya" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Papaya" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Papaya" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>กล้วย</td>
+                                          <td><input type="radio" name="Banana" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Banana" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Banana" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Banana" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Banana" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>ส้ม</td>
+                                          <td><input type="radio" name="Orange" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Orange" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Orange" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Orange" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Orange" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>สับปะรด</td>
+                                          <td><input type="radio" name="Pineapple" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Pineapple" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Pineapple" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Pineapple" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Pineapple" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">5</th>
+                                          <td>มะม่วง</td>
+                                          <td><input type="radio" name="Mango" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Mango" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Mango" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Mango" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Mango" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 8 ขนมทานเล่น</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>ขนมกรุบกรอบ</td>
+                                          <td><input type="radio" name="Crisp" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Crisp" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Crisp" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Crisp" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Crisp" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <!--<tr>
+                                          <th scope="row">2</th>
+                                          <td>ขนมไทย</td>
+                                          <td><input type="radio" name="Thaidessert" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Thaidessert" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Thaidessert" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Thaidessert" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Thaidessert" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>คุกกี้</td>
+                                          <td><input type="radio" name="Cookie" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Cookie" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Cookie" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Cookie" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Cookie" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>ลูกอม</td>
+                                          <td><input type="radio" name="Candy" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Candy" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Candy" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Candy" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Candy" id="never"                     value="0" required></td>
+                                        </tr>-->
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>ไอศกรีม</td>
+                                          <td><input type="radio" name="Icecream" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Icecream" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Icecream" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Icecream" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Icecream" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 9 เครื่องดื่ม</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>น้ำอัดลม</td>
+                                          <td><input type="radio" name="Sparkingwater" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Sparkingwater" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Sparkingwater" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Sparkingwater" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Sparkingwater" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>น้ำหวาน</td>
+                                          <td><input type="radio" name="Sweetwater" id="sevendaysweek"            value="4" required></td>
+                                          <td><input type="radio" name="Sweetwater" id="fiveorsixdaysweek"        value="3" required></td>
+                                          <td><input type="radio" name="Sweetwater" id="threeorfourdaysweek"      value="2" required></td>
+                                          <td><input type="radio" name="Sweetwater" id="oneortwodaysweek"         value="1" required></td>
+                                          <td><input type="radio" name="Sweetwater" id="never"                    value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>น้ำชา</td>
+                                          <td><input type="radio" name="Tea" id="sevendaysweek"                 value="4" required></td>
+                                          <td><input type="radio" name="Tea" id="fiveorsixdaysweek"             value="3" required></td>
+                                          <td><input type="radio" name="Tea" id="threeorfourdaysweek"           value="2" required></td>
+                                          <td><input type="radio" name="Tea" id="oneortwodaysweek"              value="1" required></td>
+                                          <td><input type="radio" name="Tea" id="never"                         value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>กาแฟ</td>
+                                          <td><input type="radio" name="Coffee" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Coffee" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Coffee" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Coffee" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Coffee" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">5</th>
+                                          <td>เหล้า,เบียร์,ไวน์</td>
+                                          <td><input type="radio" name="Liquor_beer_wine" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Liquor_beer_wine" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Liquor_beer_wine" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Liquor_beer_wine" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Liquor_beer_wine" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">6</th>
+                                          <td>เครื่องดื่มชูกำลัง</td>
+                                          <td><input type="radio" name="Energy_drink" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="Energy_drink" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="Energy_drink" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="Energy_drink" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="Energy_drink" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="7"><b>ส่วนที่ 10 การรับประทานยาและอาหารเสริม</b></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">1</th>
+                                          <td>ยารักษาจิตเภท</td>
+                                          <td><input type="radio" name="MTS" id="sevendaysweek"             value="4" required></td>
+                                          <td><input type="radio" name="MTS" id="fiveorsixdaysweek"         value="3" required></td>
+                                          <td><input type="radio" name="MTS" id="threeorfourdaysweek"       value="2" required></td>
+                                          <td><input type="radio" name="MTS" id="oneortwodaysweek"          value="1" required></td>
+                                          <td><input type="radio" name="MTS" id="never"                     value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td>ยารักษาโรคซึมเศร้า</td>
+                                          <td><input type="radio" name="Antidepressants" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Antidepressants" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Antidepressants" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Antidepressants" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Antidepressants" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">3</th>
+                                          <td>ยากันชัก</td>
+                                          <td><input type="radio" name="Antiepilepticdrug" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Antiepilepticdrug" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Antiepilepticdrug" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Antiepilepticdrug" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Antiepilepticdrug" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">4</th>
+                                          <td>ยารักษาเบาหวาน</td>
+                                          <td><input type="radio" name="Diabetesmedication" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Diabetesmedication" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Diabetesmedication" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Diabetesmedication" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Diabetesmedication" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">5</th>
+                                          <td>ยาคุมกำเนิด</td>
+                                          <td><input type="radio" name="Birthcontrolpills" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Birthcontrolpills" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Birthcontrolpills" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Birthcontrolpills" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Birthcontrolpills" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <!--<tr>
+                                          <th scope="row">6</th>
+                                          <td>ยารักษาภาวะเยื่อบุมดลูกต่างที่</td>
+                                          <td><input type="radio" name="Diffrentdrugforendometriosis" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Diffrentdrugforendometriosis" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Diffrentdrugforendometriosis" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Diffrentdrugforendometriosis" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Diffrentdrugforendometriosis" id="never"                 value="0" required></td>
+                                        </tr>-->
+                                        <tr>
+                                          <th scope="row">6</th>
+                                          <td>ยาต้านอักเสบ</td>
+                                          <td><input type="radio" name="Antiinflammatorydrug" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Antiinflammatorydrug" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Antiinflammatorydrug" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Antiinflammatorydrug" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Antiinflammatorydrug" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">7</th>
+                                          <td>ยาต้านไวรัสเอดส์</td>
+                                          <td><input type="radio" name="Antiviraldrug" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Antiviraldrug" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Antiviraldrug" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Antiviraldrug" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Antiviraldrug" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">8</th>
+                                          <td>อาหารเสริมชนิดต่างๆ</td>
+                                          <td><input type="radio" name="Varioussupplements" id="sevendaysweek"         value="4" required></td>
+                                          <td><input type="radio" name="Varioussupplements" id="fiveorsixdaysweek"     value="3" required></td>
+                                          <td><input type="radio" name="Varioussupplements" id="threeorfourdaysweek"   value="2" required></td>
+                                          <td><input type="radio" name="Varioussupplements" id="oneortwodaysweek"      value="1" required></td>
+                                          <td><input type="radio" name="Varioussupplements" id="never"                 value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                        </tr>
+                                      </tbody>
+                                    </table>                                    
+                                </div>
+                              </blockquote>
+                              <div class="card-header" style="background-color:#DBE7F9">
+                                <font size="4"><b>ตอนที่ 3 : พฤติกรรมในการชีวิตประจำวัน</b></font><br>
+                                <font size="4"><b>คำชี้แจง</b> : โปรดเลือกคำตอบในตารางที่ตรงกับพฤติกรรมในการใช้ชีวิตประจำวันของท่านมากที่สุดเพียงข้อเดียวและโปรดตอบทุกคำถาม</font>
+                              </div>
+                                  <blockquote class="blockquote mb-0">
+                                    <div class="table-responsive">
+                                      <table class="table table-bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                              <td align="center" rowspan="2"><b>ลำดับ</b></td>
+                                              <td align="center" rowspan="2"><b>รายการ</b></td>
+                                              <td align="center" colspan=5><b>ความถี่ในการปฏิบัติ</b></td>
+                                            </tr>
+                                            <tr>
+                                              {% for typename3 in exerciseQuestion %}
+                                              <td align="center" scope="col=1"><b>{{typename3.typename2}}</b></td>
+                                              {% endfor %}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 1 การสูบบุหรี่</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>มีการสูบบุหรี่</td>
+                                              <td><input type="radio" name="Smoke" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Smoke" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Smoke" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Smoke" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Smoke" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 2 การออกกำลังกาย</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>วิ่ง</td>
+                                              <td><input type="radio" name="Run" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Run" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Run" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Run" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Run" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >2</th>                          
+                                              <td>ปั่นจักรยาน</td>
+                                              <td><input type="radio" name="Cycling" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Cycling" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Cycling" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Cycling" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Cycling" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >3</th>                          
+                                              <td>ว่ายน้ำ</td>
+                                              <td><input type="radio" name="Swim" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Swim" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Swim" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Swim" id="oneortwodaysweek"      value="1" required> </td>
+                                              <td><input type="radio" name="Swim" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >4</th>                          
+                                              <td>เล่นบาสเกตบอล</td>
+                                              <td><input type="radio" name="Basketball" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Basketball" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Basketball" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Basketball" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Basketball" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >5</th>                          
+                                              <td>เล่นฟุตบอล</td>
+                                              <td><input type="radio" name="Football" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Football" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Football" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Football" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Football" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >6</th>                          
+                                              <td>เล่นโยคะ</td>
+                                              <td><input type="radio" name="Yoga" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Yoga" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Yoga" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Yoga" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Yoga" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >7</th>                          
+                                              <td>เต้นอาโรบิค</td>
+                                              <td><input type="radio" name="Aerobic" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Aerobic" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Aerobic" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Aerobic" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Aerobic" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >8</th>                          
+                                              <td>การยกน้ำหนัก</td>
+                                              <td><input type="radio" name="Weightlifting" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Weightlifting" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Weightlifting" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Weightlifting" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Weightlifting" id="never"                 value="0" required></td>            
+                                            </tr>
+                                          </tbody>
+                                      </table>
+                                    </div>
+                                  </blockquote>
+                                  <div class="card-header" style="background-color:#DBE7F9">
+                                    <font size="4"><b>ตอนที่ 4 : อาการ/ปัญหาสุขภาพ</b></font><br>
+                                    <font size="4"><b>คำชี้แจง</b> : โปรดเลือกคำตอบในตารางที่ตรงกับพฤติกรรมสุขภาพของท่านมากที่สุดเพียงข้อเดียวและโปรดตอบทุกคำถาม<br>โดยแต่ละข้อคำตอบมีความหมาย ดังนี้ </font><br>
+                                    <font>เสมอ หมายถึง มีอาการเป็นประจำและสม่ำเสมอ ( 5-7 วันใน 1 สัปดาห์)</font><br>
+                                    <font>บ่อยๆ หมายถึง มีอาการเป็นประจำแต่ไม่สม่ำเสมอ ( 3-4 วันใน 1 สัปดาห์)</font><br>
+                                    <font>นานๆครั้ง หมายถึง มีอาการเป็นบางครั้ง ( ประมาณ 1-2 วันใน 1 สัปดาห์)</font><br>
+                                  </div>
+                                  <blockquote class="blockquote mb-0">
+                                    <div class="table-responsive">
+                                      <table class="table table-bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                              <td align="center" rowspan="2"><b>ลำดับ</b></td>
+                                              <td align="center" rowspan="2"><b>รายการ</b></td>
+                                              <td align="center" colspan=5><b>ความถี่ในการปฏิบัติ</b></td>
+                                            </tr>
+                                            <tr>
+                                              {% for typename1 in Question %}
+                                              <td align="center" scope="col=1"><b>{{typename1.typename}}</b></td>
+                                              {% endfor %}
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 1 ปัญหาด้านการนอนหลับ และพักผ่อน</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>นอนพักผ่อนไม่เพียงพอ</td>
+                                              <td><input type="radio" name="NGS" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="NGS" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="NGS" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="NGS" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="NGS" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >2</th>                          
+                                              <td>ขณะหลับมีการนอนกรน</td>
+                                              <td><input type="radio" name="SHS" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="SHS" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="SHS" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="SHS" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="SHS" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >3</th>                          
+                                              <td>ง่วงนอนตอนกลางวัน</td>
+                                              <td><input type="radio" name="SDD" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="SDD" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="SDD" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="SDD" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="SDD" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 2 ปัญหาด้านการหายใจ</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>ในขณะที่ออกกำลังกายมีอาการหายใจเร็วขึ้นกว่าปกติ และมีเหงื่อซึม</td>
+                                              <td><input type="radio" name="WEBFS" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="WEBFS" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="WEBFS" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="WEBFS" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="WEBFS" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >2</th>                          
+                                              <td>การหายใจลำบาก</td>
+                                              <td><input type="radio" name="Difficultybreathing" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Difficultybreathing" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Difficultybreathing" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Difficultybreathing" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Difficultybreathing" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >3</th>                          
+                                              <td>เวลาหายใจมีเสียงดังวี๊ดๆ มาจากหลอดลม และบริเวณทรวงอก</td>
+                                              <td><input type="radio" name="WBLFTC" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="WBLFTC" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="WBLFTC" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="WBLFTC" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="WBLFTC" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 3 ปัญหาด้านผิวหนัง</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>แผลสมานช้า</td>
+                                              <td><input type="radio" name="SWH" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="SWH" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="SWH" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="SWH" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="SWH" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >2</th>                          
+                                              <td>คันตามผิวหนัง</td>
+                                              <td><input type="radio" name="Itchyskin" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="Itchyskin" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="Itchyskin" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="Itchyskin" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="Itchyskin" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >3</th>                          
+                                              <td>ผิวหนังจากเปลือกตาถึงหัวตาหนาขึ้น และมีจุดเหลือง</td>
+                                              <td><input type="radio" name="TSY" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="TSY" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="TSY" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="TSY" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="TSY" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >4</th>                          
+                                              <td>มือ หลัง ข้อเข่า ศอก มีผิวเหลืองเเข็ง</td>
+                                              <td><input type="radio" name="Yellowskin" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Yellowskin" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Yellowskin" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Yellowskin" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Yellowskin" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >5</th>                          
+                                              <td>มีแถบสีเหลืองบนเส้นลายมือ</td>
+                                              <td><input type="radio" name="YSP" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="YSP" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="YSP" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="YSP" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="YSP" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >6</th>                          
+                                              <td>หน้าอก หลัง ก้น มีจุดแดงเป็นกลุ่ม</td>
+                                              <td><input type="radio" name="CRS" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="CRS" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="CRS" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="CRS" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="CRS" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >7</th>                          
+                                              <td>ภูมิเเพ้อากาศ</td>
+                                              <td><input type="radio" name="AirAllergic" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="AirAllergic" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="AirAllergic" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="AirAllergic" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="AirAllergic" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 4 ปัญหาด้านการมองเห็น</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>ตาพร่ามัว</td>
+                                              <td><input type="radio" name="Blurredvision" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Blurredvision" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Blurredvision" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Blurredvision" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Blurredvision" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 5 ปัญหาด้านช่องปาก</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>มีกลิ่นปาก</td>
+                                              <td><input type="radio" name="Badbreath" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="Badbreath" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="Badbreath" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="Badbreath" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="Badbreath" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 6 ปัญหาด้านการปัสสาวะ</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>ปัสสาวะบ่อย โดนเฉพาะในเวลากลางคืน</td>
+                                              <td><input type="radio" name="HFN" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="HFN" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="HFN" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="HFN" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="HFN" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >2</th>                          
+                                              <td>กลั้นปัสสาวะไม่ได้</td>
+                                              <td><input type="radio" name="Urinaryincontinence" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Urinaryincontinence" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Urinaryincontinence" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Urinaryincontinence" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Urinaryincontinence" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >3</th>                          
+                                              <td>ปัสสาวะเป็นฟอง</td>
+                                              <td><input type="radio" name="Foamyurine" id="sevendaysweek"          value="4" required></td>
+                                              <td><input type="radio" name="Foamyurine" id="fiveorsixdaysweek"      value="3" required></td>
+                                              <td><input type="radio" name="Foamyurine" id="threeorfourdaysweek"    value="2" required></td>
+                                              <td><input type="radio" name="Foamyurine" id="oneortwodaysweek"       value="1" required></td>
+                                              <td><input type="radio" name="Foamyurine" id="never"                  value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 7 ปัญหาด้านน้ำหนักตัว</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>น้ำหนักลดโดยไม่มีสาเหตุ</td>
+                                              <td><input type="radio" name="WLC" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="WLC" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="WLC" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="WLC" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="WLC" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 8 ปัญหาเกี่ยวกับสมองเเละความเครียด</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>มีความเครียดระหว่างวัน</td>
+                                              <td><input type="radio" name="Havestress" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Havestress" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Havestress" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Havestress" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Havestress" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >2</th>                          
+                                              <td>วิงเวียนศีรษะ หน้ามืด</td>
+                                              <td><input type="radio" name="Dizziness" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Dizziness" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Dizziness" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Dizziness" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Dizziness" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >3</th>                          
+                                              <td>ปวดศีรษะมาก เมื่อลุกหรือนั่งเร็วๆ</td>
+                                              <td><input type="radio" name="SHQ" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="SHQ" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="SHQ" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="SHQ" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="SHQ" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 9 ปัญหาเกี่ยวกับมือเเละเท้า</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>ชามือ ชาเท้า</td>
+                                              <td><input type="radio" name="NHF" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="NHF" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="NHF" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="NHF" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="NHF" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >2</th>                          
+                                              <td>เหงื่อออกตามมือ ตามเท้า</td>
+                                              <td><input type="radio" name="SHF" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="SHF" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="SHF" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="SHF" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="SHF" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >3</th>                          
+                                              <td>มือเย็น เท้าเย็น</td>
+                                              <td><input type="radio" name="Coldhandandfeet" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Coldhandandfeet" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Coldhandandfeet" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Coldhandandfeet" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Coldhandandfeet" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 10 ปัญหาเกี่ยวกับช่องท้อง</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>คลื่นไส้ อาเจียน</td>
+                                              <td><input type="radio" name="Nauseaandvomiting" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Nauseaandvomiting" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Nauseaandvomiting" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Nauseaandvomiting" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Nauseaandvomiting" id="never"                 value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >2</th>                          
+                                              <td>จุกเสียดท้อง</td>
+                                              <td><input type="radio" name="Stomachcolic" id="sevendaysweek"              value="4" required></td>
+                                              <td><input type="radio" name="Stomachcolic" id="fiveorsixdaysweek"          value="3" required></td>
+                                              <td><input type="radio" name="Stomachcolic" id="threeorfourdaysweek"        value="2" required></td>
+                                              <td><input type="radio" name="Stomachcolic" id="oneortwodaysweek"           value="1" required></td>
+                                              <td><input type="radio" name="Stomachcolic" id="never"                      value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >3</th>                          
+                                              <td>ร้อนยอดอกหลังอาหาร เรอมีกลิ่นเปรี้ยว กรดไหลย้อน</td>
+                                              <td><input type="radio" name="AMS" id="sevendaysweek"                       value="4" required></td>
+                                              <td><input type="radio" name="AMS" id="fiveorsixdaysweek"                   value="3" required></td>
+                                              <td><input type="radio" name="AMS" id="threeorfourdaysweek"                 value="2" required></td>
+                                              <td><input type="radio" name="AMS" id="oneortwodaysweek"                    value="1" required></td>
+                                              <td><input type="radio" name="AMS" id="never"                               value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <td colspan="7"><b>ส่วนที่ 11 ปัญหาเกี่ยวกับการทำงานของหัวใจ</b></td>
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >1</th>                          
+                                              <td>เจ็บแน่นหน้าอก ปวดร้าวไปที่แขนไหล่และคอซีกซ้าย</td>
+                                              <td><input type="radio" name="Agony" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="Agony" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="Agony" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="Agony" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="Agony" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >2</th>                          
+                                              <td>ใจสั่น หัวใจเต้นผิดจังหวะ</td>
+                                              <td><input type="radio" name="PIH" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="PIH" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="PIH" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="PIH" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="PIH" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >3</th>                          
+                                              <td>ทำกิจกรรมแล้วเหนื่อยง่ายกว่าปกติ</td>
+                                              <td><input type="radio" name="DAT" id="sevendaysweek"             value="4" required></td>
+                                              <td><input type="radio" name="DAT" id="fiveorsixdaysweek"         value="3" required></td>
+                                              <td><input type="radio" name="DAT" id="threeorfourdaysweek"       value="2" required></td>
+                                              <td><input type="radio" name="DAT" id="oneortwodaysweek"          value="1" required></td>
+                                              <td><input type="radio" name="DAT" id="never"                     value="0" required></td>            
+                                            </tr>
+                                            <tr>
+                                              <th scope="row" >4</th>                          
+                                              <td>นอนราบไม่ได้</td>
+                                              <td><input type="radio" name="Cannotliedown" id="sevendaysweek"         value="4" required></td>
+                                              <td><input type="radio" name="Cannotliedown" id="fiveorsixdaysweek"     value="3" required></td>
+                                              <td><input type="radio" name="Cannotliedown" id="threeorfourdaysweek"   value="2" required></td>
+                                              <td><input type="radio" name="Cannotliedown" id="oneortwodaysweek"      value="1" required></td>
+                                              <td><input type="radio" name="Cannotliedown" id="never"                 value="0" required></td>            
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                    </div>                                   
+                                  </blockquote>
+                                  <div class="d-grid gap-2">
+                                    <button type="submit" id="predict" class="btn btn-danger" > ประเมินผล </button>
+                                  </div>
+                                  
+                            </form>
+                          </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+    </body>
+</html>
+
+                                          <!--  <div class="d-grid gap-2">
+                                              <button type="button" class="btn btn-outline-primary " onclick="check1()">ประมวลผล</button>
+                                            </div>
+                                            <b style="color:brown" id="selectchoice"></b>-->
+                   
+{% endblock content %}
